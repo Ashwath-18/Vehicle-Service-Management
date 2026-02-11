@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Vehicles</title>
-</head>
-<body>
-    <h2>My Vehicles</h2>
+{% extends "base.html" %}
 
-    <a href="/add_vehicle">Add New Vehicle</a><br><br>
+{% block title %}My Vehicles{% endblock %}
 
-    {% for vehicle in vehicles %}
-        <p>
-            Vehicle Number: {{ vehicle.vehicle_number }} |
-            Type: {{ vehicle.vehicle_type }} |
-            Model: {{ vehicle.model }}
-        </p>
-    {% else %}
-        <p>No vehicles added yet.</p>
-    {% endfor %}
+{% block content %}
 
-</body>
-</html>
+<h2>My Vehicles</h2>
+
+{% for vehicle in vehicles %}
+    <p>
+        Vehicle Number: {{ vehicle.vehicle_number }} |
+        Type: {{ vehicle.vehicle_type }} |
+        Model: {{ vehicle.model }}
+    </p>
+{% else %}
+    <p>No vehicles added yet.</p>
+{% endfor %}
+
+{% endblock %}

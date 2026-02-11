@@ -63,7 +63,21 @@ def dashboard():
     if "user_id" not in session:
         return redirect("/login")
 
-    return f"Welcome {session['user_name']} | <a href='/logout'>Logout</a>"
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    query = "SELECT COUNT(*) FROM vehicles WHERE user_id=%s"
+    cursor.execute(query, (session["user_id"],))
+    vehicle_count = cursor.fetchone()[0]
+
+    cursor.close()
+    conn.close()
+
+    return render_template(
+        "dashboard.html",
+        user_name=session["user_name"],
+        vehicle_count=vehicle_count
+    )
 
 
 # ---------------- ADD VEHICLE ----------------

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Vehicle Service System{% endblock %}</title>
+</head>
+<body>
+
+    {% if session.get("user_id") %}
+        <a href="/dashboard">Home</a> |
+        <a href="/add_vehicle">Add Vehicle</a> |
+        <a href="/view_vehicles">My Vehicles</a> |
+        <a href="/logout">Logout</a>
+        <hr>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
